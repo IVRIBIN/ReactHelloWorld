@@ -2,6 +2,9 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post';
 
+
+
+
 const MyPosts = (props) => {
     /*
     let posts = [
@@ -12,6 +15,11 @@ const MyPosts = (props) => {
 
     let postsElements = props.posts.map( p => <Post message={p.message}></Post>);
 
+    let onPostChange = () => {
+      let text = newPostElement.current.value;//обращаемся к элементу через из ссылки через .curent
+      props.updatePostText(text);
+    }
+
     {/*
     В React работаем не с DOM элементами а с VirtualDom, забудь про обращения через document и т.д. 
     Ниже создаем ссылку на объект через createRef, и эту ссылку присваиваем элементу через ref
@@ -20,9 +28,10 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-      let text = newPostElement.current.value;//обращаемся к элементы через из ссылке через .curent
-      props.addPost(text);//Здесь происходит вызов addPost которая проброшена через props из state.js
-      newPostElement.current.value = "";
+      //в props.addPost мы отправляем не value элемента, а проп из state(прокинут сюда через props),
+      //а он меняется через onPostChange вызовом функции
+      props.addPost(props.newPostText);//Здесь происходит вызов addPost которая проброшена через props из state.js
+      props.updatePostText("");
     }
 
     return (
@@ -30,7 +39,8 @@ const MyPosts = (props) => {
         <h3>My post</h3>
         <div>
           <div>
-            <textarea ref = {newPostElement}></textarea>{/* присваиваем элементу textarea ссылку newPostElement*/}
+            {/* присваиваем элементу textarea ссылку newPostElement*/}
+            <textarea onChange={onPostChange} value={props.newPostText} ref = {newPostElement}></textarea>
           </div>
           <div>
             {/* ВАЖНО: на событие вешаем не вызов функции, а объект функции, поэтому без скобок */}
