@@ -31,7 +31,6 @@ const MyPosts = (props) => {
       //в props.addPost мы отправляем не value элемента, а проп из state(прокинут сюда через props),
       //а он меняется через onPostChange вызовом функции
       props.addPost(props.newPostText);//Здесь происходит вызов addPost которая проброшена через props из state.js
-      props.updatePostText("");
     }
 
     return (

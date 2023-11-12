@@ -9,18 +9,22 @@
     state.js и index.js, что позволит избежать циклической зависимости.
 */
 
+/*
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {addPost} from './redux/state'; //Импорт функции экспортируемой не по default
 import {updatePostText} from './redux/state'; //Импорт функции экспортируемой не по default
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
 
 export let rerenderEntireTree = (state) => {
-  const root = ReactDOM.createRoot(document.getElementById('root'));
+  //const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(
     <React.StrictMode>
       <App state={state} addPost={addPost} updatePostText={updatePostText}/>
     </React.StrictMode>
   );
 }
+*/
